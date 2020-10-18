@@ -1,0 +1,67 @@
+<div class="container">
+    <form [formGroup]="form">
+        <!-- brand input field-->
+        <div class="form-group">
+            <label for="brand">Brand</label>
+            <input
+                formControlName="brand"
+                type="text"
+                id="brand"
+                class="form-control">
+            <div *ngIf="brand.touched && brand.invalid" class="alert alert-danger">
+                <div *ngIf="brand.errors.required">Brand field is required</div>
+                <div *ngIf="brand.errors.cannotContainSpace">Brand cannot contain space</div>
+                <div *ngIf="brand.errors.cannotContainNumber">Brand should contain only letters</div>
+            </div>
+        </div>
+
+        <!-- model input field-->
+        <div class="form-group">
+            <label for="model">Model</label>
+            <input
+                formControlName="model"
+                type="text"
+                id="model"
+                class="form-control">
+            <div *ngIf="model.touched && model.invalid" class="alert alert-danger">
+                <div *ngIf="model.errors.required">Model field is required</div>
+                <div *ngIf="model.errors.cannotContainSpace">Model cannot contain space</div>
+            </div>
+        </div>
+
+        <!-- appliance type input field-->
+        <div class="form-group">
+            <label for="type">Appliance type</label>
+            <select
+                formControlName="applianceType"
+                type="text"
+                id="type"
+                class="form-control">
+                <option>Oven</option>
+                <option>Hood</option>
+                <option>Dishwasher</option>
+            </select>
+            <div *ngIf="applianceType.touched && applianceType.invalid" class="alert alert-danger">Type field is
+                required
+            </div>
+        </div>
+
+        <!-- description input field-->
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                formControlName="description"
+                type="text"
+                id="description"
+                cols="50"
+                rows="5"
+                class="form-control">
+            </textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary"
+            (click)="formSubmit(brand.value, model.value, applianceType.value, description.value); 
+             ">Add</button>
+
+    </form>
+</div>

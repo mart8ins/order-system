@@ -1,0 +1,21 @@
+<div class="navbar">
+    <div class="title">Order placing system</div>
+    <div *ngIf="!isUserLoggedIn" class="authBtns">
+        <button
+            routerLink="login"
+            class="btn btn-secondary btn-sm"
+            routerLinkActive="active-register">Login</button>
+
+        <button
+            routerLink="new-user"
+            class="btn btn-secondary btn-sm"
+            routerLinkActive="active-register">Register</button>
+    </div>
+
+    <div *ngIf="isUserLoggedIn">
+        <a routerLink="place-order" routerLinkActive="active">Add new order</a>
+        <a routerLink="order-status" routerLinkActive="active">Order status</a>
+        <a routerLink="model-database" routerLinkActive="active">Database control</a>
+        <button class="logout" (click)="logout()" routerLink="login">Logout</button>
+    </div>
+</div>

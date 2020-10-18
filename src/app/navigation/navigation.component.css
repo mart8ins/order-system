@@ -1,0 +1,63 @@
+.navbar {
+    background-color: #203647;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+}
+
+.authBtns button {
+    margin-left: 5px;
+}
+
+.title {
+    padding: 10px;
+    font-family: 'Lemonada', cursive;
+    font-size: 22px;
+}
+
+.title:after{
+    content: 'create new order and follow its status';
+    position: relative;
+    left: -85px;
+    top: 20px;
+    color: white;
+    font-size: 10px;
+}
+.navbar a {
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: #115580;
+    color: white;
+    padding: 12px;
+    margin: 5px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-family: 'Righteous', cursive;
+    letter-spacing: 2px;
+    border-top-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+.navbar a:hover {
+cursor: pointer;
+}
+
+.navbar .active {
+    background-color: #7cb6d4;
+    box-shadow: 5px 5px 10px #7cb6d4;
+}
+
+
+.navbar .active-register {
+    border: 1px solid white;
+
+}
+
+.logout {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 10px;
+    border: none;
+}

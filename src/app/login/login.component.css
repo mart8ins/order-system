@@ -1,0 +1,18 @@
+form {
+    margin: 300px auto;
+    width: 300px;
+    transition: 0.5s;
+    background-color: #185f8b;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 2px 2px 4px #153244;
+}
+form, button {
+    text-align: center;
+}
+
+form:hover {
+    transform: scale(1.2);
+    box-shadow: 18px 18px 14px #153244;
+}
+

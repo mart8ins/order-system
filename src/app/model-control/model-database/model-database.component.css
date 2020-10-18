@@ -1,0 +1,26 @@
+.nav {
+    background-color: #203647;
+    padding: 5px;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px solid white;
+    margin-top: 1px;
+}
+a {
+    font-size: 22px;
+    text-transform: uppercase;
+    text-decoration: overline;
+    text-decoration-color: white;
+    color: rgb(161, 161, 192);
+    padding: 5px;
+
+}
+a:hover {
+cursor: pointer;
+color: white;
+}
+
+.active-link {
+    color: white;
+}

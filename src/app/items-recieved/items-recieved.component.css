@@ -1,0 +1,51 @@
+
+/* header for title of data*/
+.options-title {
+    background-image: linear-gradient(to bottom, #789cb8, #d3d7f1) ;
+}
+.options-title div {
+    border-right: 1px solid white;
+    text-align: center;
+    text-transform: uppercase;
+}
+.options-title .status-title {
+    text-align: center;
+}
+
+/* actual  order data */
+.order {
+    display:flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    background-color: rgb(206, 236, 135);
+    
+}
+
+.order div {
+    text-align: center;
+}
+
+.order-data {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.green-circle {
+    position: relative;
+    left: 125px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(19, 230, 19);
+}
+
+.red-circle {
+    position: relative;
+    left: 95px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(218, 53, 53);
+}
