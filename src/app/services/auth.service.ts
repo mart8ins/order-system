@@ -28,21 +28,23 @@ export class AuthService {
     }
   }
 
-  registerNewUser = (user: Object) => {
-
+  // getting existing registered users from local storage
+  getAllUsers = () => {
     let users = [];
-
-    // getting existing registered users
     let existingUsers = JSON.parse(localStorage.getItem('Users'));
     if (existingUsers) {
       for (let i = 0; i < existingUsers.length; i++) {
         users.push(existingUsers[i])
       }
     }
-    //adding new user to already existing user list
-    users.push(user);
+    return users;
+  }
 
-    // updating localStorage
+
+  // updating localStorage with new registered user
+  registerNewUser = (user: Object) => {
+    let users = this.getAllUsers();
+    users.push(user);
     localStorage.setItem('Users', JSON.stringify(users));
   }
 

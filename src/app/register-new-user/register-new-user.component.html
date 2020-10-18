@@ -1,27 +1,31 @@
 <div class='container'>
-    <form>
+    <form #myForm='ngForm' (ngSubmit)="newUser(myForm)">
 
         <div class='form-group'>
             <input
-                #username
+                ngModel
+                #username="ngModel"
+                name="username"
                 type="text"
                 placeholder="new username"
                 class='form-control'>
         </div>
         <div class='form-group'>
             <input
-                #passwordInput
+                ngModel
+                #passwordInput="ngModel"
+                name="password"
                 type="password"
                 placeholder="new password"
                 class='form-control'>
         </div>
         <button
-            class='btn btn-dark'
-            (click)='newUser(username.value, passwordInput.value); username.value = ""; passwordInput.value = ""; '>
+            class='btn btn-dark'>
             Register
         </button>
 
     </form>
 
     <!-- <span *ngIf="status.loginFailed">{{status.loginFailMessage}}</span> -->
+    <!-- (click)='newUser(username.value, passwordInput.value); username.value = ""; passwordInput.value = ""; '> -->
 </div>

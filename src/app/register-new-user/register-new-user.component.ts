@@ -19,16 +19,15 @@ export class RegisterNewUserComponent implements OnInit {
     return id;
   }
 
-  newUser(username, password) {
+  newUser(forma) {
     let user = {
       id: this.generateUserId(),
-      username: username,
-      password: password,
-      admin: false
+      username: forma.form.value.username,
+      password: forma.form.value.password
     };
     /* create a new user in localStorage*/
     this.auth.registerNewUser(user);
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/place-order');
   }
 
 }
