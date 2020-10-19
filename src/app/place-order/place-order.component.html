@@ -13,11 +13,7 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
                 (change)="validation(brand)">
                 <!-- #brandValue ir priekš tā, lai pēc katra sumbita notīrītos lauks, #brand, lai sabindotu ngModel un piekļūtu 
                 konkrētā inputa opcijām -->
-                <option value=""></option>
-                <option>Bosch</option>
-                <option>SMEG</option>
-                <option>AEG</option>
-                <option>NEFF</option>
+                <option *ngFor="let brandRender of allBrands">{{brandRender}}</option>
             </select>
             <div *ngIf="quantity.touched && !brand.valid">
                 <p class="alert alert-danger">This field is reqired</p>

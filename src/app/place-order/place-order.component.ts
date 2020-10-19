@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../services/order.service'
+
+// data to render in select option
+import { Brands } from '../utilities/brands';
 
 
 @Component({
@@ -8,47 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaceOrderComponent implements OnInit {
 
-  constructor() {
+  constructor(private orderService: OrderService) {
   }
 
-  // orders: any[] = [];
-  // usedIds: number[] = [];
-  // order: any = {
-  // }
-
-  // generateId = () => {
-  //   let id = Math.floor(Math.random() * 100);
-  //   this.usedIds.push(id)
-  //   this.usedIds.forEach(item => {
-  //     if (id == item) {
-  //       id = Math.floor(Math.random() * 100);
-  //     } else {
-  //       return id;
-  //     }
-  //   })
-  //   return id;
-  // }
-
-  // orderSubmit = ($event, brend, item, quantity) => {
-  //   $event.preventDefault();
-
-  //   let order = {
-  //     orderId: this.generateId(),
-  //     brend: brend,
-  //     item: item,
-  //     quantity: quantity,
-  //     dateCreated: new Date(),
-  //     recieved: false
-  //   }
-
-  //   this.orders.push(order)
-
-  //   localStorage.setItem(`Order Id-${order.orderId}`, JSON.stringify(this.order))
-  //   console.log(this.orders)
-  // }
+  allBrands;
 
   ngOnInit(): void {
-
+    this.allBrands = Brands;
   }
 
   orders: any[] = [];
@@ -70,20 +40,24 @@ export class PlaceOrderComponent implements OnInit {
   }
 
   submit(fields) {
-    console.log(fields)
+    // getting users ID who is logged in, and ading this id to the order
+    let userid = this.orderService.orderUserID();
+
     // creates new order object
     let order = {
+      userId: userid,
       orderId: this.generateId(),
       brand: fields.value.brand,
       model: fields.value.orderData.model,
       quantity: fields.value.orderData.quantity,
-      created: new Date().getDate(),
+      created: new Date(),
       recieved: false
     }
-    // pushes new order to order array and places the order in localStorage
+
     // all orders array will be used to display all curent added orders, but not all previosly stored - in this same component
     this.orders.unshift(order);
-    localStorage.setItem(`OrderId-${order.orderId}`, JSON.stringify(order))
+    // store to localStorage
+    this.orderService.addOrderToLS(order);
   }
 
   validation(field) {

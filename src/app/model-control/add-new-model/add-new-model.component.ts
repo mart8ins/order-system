@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { InputValidators } from '../../validators/input.validators'
+import { InputValidators } from '../../validators/input.validators';
+
+// helper data to render all needed values in select options
+import { Brands } from "../../utilities/brands";
+import { AppliancesType } from '../../utilities/appliances-type'
+
+// service for storing new model
+import { ModelService } from '../../services/model.service'
 
 
 @Component({
@@ -9,6 +16,17 @@ import { InputValidators } from '../../validators/input.validators'
   styleUrls: ['./add-new-model.component.css']
 })
 export class AddNewModelComponent implements OnInit {
+
+  constructor(private modelService: ModelService) { }
+
+  allBrands;
+  applianceTypes;
+
+  ngOnInit(): void {
+    this.allBrands = Brands;
+    this.applianceTypes = AppliancesType;
+  }
+
 
   form = new FormGroup(
     {
@@ -45,15 +63,24 @@ export class AddNewModelComponent implements OnInit {
 
 
 
-  formSubmit = (brand, model, applianceType, description) => {
-    console.log(applianceType)
+  formSubmit = (form) => {
+    let userid = this.modelService.modelCreatedByUserId();
+
+    let addModel = {
+      createdByUserId: userid,
+      brand: form.value.brand,
+      model: form.value.model.toUpperCase(),
+      applianceType: form.value.applianceType,
+      description: form.value.description
+    }
+
+    this.modelService.storeModelToLS(addModel);
+
+    console.log(form)
+    this.form.controls.brand.setValue('');
+    this.form.controls.model.setValue('');
+    this.form.controls.applianceType.setValue('');
+
   }
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-
 
 }
