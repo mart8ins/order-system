@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from '../services/order.service'
+import { OrderService } from '../services/order.service';
+import { ModelService } from '../services/model.service';
 
 // data to render in select option
 import { Brands } from '../utilities/brands';
@@ -12,13 +13,16 @@ import { Brands } from '../utilities/brands';
 })
 export class PlaceOrderComponent implements OnInit {
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private modelService: ModelService) {
   }
 
   allBrands;
+  uniqueUsersCreatedModels;
 
   ngOnInit(): void {
     this.allBrands = Brands;
+    this.uniqueUsersCreatedModels = this.modelService.get_Stored_Model_Data_Logged_User();
+    console.log(this.uniqueUsersCreatedModels, 'komponentē')
   }
 
   orders: any[] = [];

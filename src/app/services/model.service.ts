@@ -29,7 +29,6 @@ export class ModelService {
     }
 
   }
-
   // getting users ID who placed the order
   modelCreatedByUserId = () => {
     let userSession = sessionStorage.getItem("username");
@@ -43,4 +42,61 @@ export class ModelService {
     }
     return currentUserId;
   }
+
+  // get_Stored_Model_Data_Logged_User() {
+  //   let userID = this.modelCreatedByUserId();
+  //   let createdModels = JSON.parse(localStorage.getItem('modelData'));
+  //   let models = [];
+
+  //   createdModels.forEach((modelData) => {
+  //     if (modelData.createdByUserId == userID) {
+  //       models.push(modelData.model)
+  //     }
+  //   })
+
+  //   // getting only unique models
+  //   let uniqueModels = [...new Set(models)];
+
+  //   return uniqueModels;
+  // }
+
+  get_Stored_Model_Data_Logged_User() {
+    let userID = this.modelCreatedByUserId();
+    let createdModels: any[] = JSON.parse(localStorage.getItem('modelData'));
+
+    // for all registred inputs for brand
+    let brands = [];
+    createdModels.forEach((modelData) => {
+      if (modelData.createdByUserId == userID) {
+        brands.push(modelData.brand)
+      }
+    })
+
+    // getting only unique models
+    let uniqueBrands = [...new Set(brands)];
+    console.log(uniqueBrands)
+    // storing brand -> all specific brands models
+    let allModelOfBrand = [];
+
+    uniqueBrands.forEach((unique) => {
+      let brand = unique;
+      let models = [];
+
+      createdModels.forEach((modelData) => {
+        if (brand == modelData.brand) {
+          console.log(modelData.model)
+          models.push(modelData.model)
+        }
+      })
+      allModelOfBrand.push({
+        brand,
+        models
+      })
+    })
+
+
+    return allModelOfBrand
+  }
+
+
 }

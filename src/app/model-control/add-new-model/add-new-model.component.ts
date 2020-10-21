@@ -77,9 +77,13 @@ export class AddNewModelComponent implements OnInit {
     this.modelService.storeModelToLS(addModel);
 
     console.log(form)
+    // clears the form after submit, and also removes validation errors
     this.form.controls.brand.setValue('');
+    this.form.controls.brand.markAsUntouched();
     this.form.controls.model.setValue('');
+    this.form.controls.model.markAsUntouched();
     this.form.controls.applianceType.setValue('');
+    this.form.controls.applianceType.markAsUntouched();
 
   }
 
