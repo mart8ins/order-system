@@ -16,8 +16,9 @@ export class PlaceOrderComponent implements OnInit {
   constructor(private orderService: OrderService, private modelService: ModelService) {
   }
 
-  allBrands;
-  uniqueUsersCreatedModels;
+  allBrands: string[] = [];
+  uniqueUsersCreatedModels: any[] = [];
+  choosenBrandModels: string[] = [];
 
   ngOnInit(): void {
     this.allBrands = Brands;
@@ -47,25 +48,41 @@ export class PlaceOrderComponent implements OnInit {
     // getting users ID who is logged in, and ading this id to the order
     let userid = this.orderService.orderUserID();
 
-    // creates new order object
-    let order = {
-      userId: userid,
-      orderId: this.generateId(),
-      brand: fields.value.brand,
-      model: fields.value.orderData.model,
-      quantity: fields.value.orderData.quantity,
-      created: new Date(),
-      recieved: false
+    // if input field model is not with valid data than order is not placed
+    if (fields.value.orderData.model != '--models--') {
+      // creates new order object
+      let order = {
+        userId: userid,
+        orderId: this.generateId(),
+        brand: fields.value.brand,
+        model: fields.value.orderData.model,
+        quantity: fields.value.orderData.quantity,
+        created: new Date(),
+        recieved: false
+      }
+      // all orders array will be used to display all curent added orders, but not all previosly stored - in this same component
+      this.orders.unshift(order);
+      // store to localStorage
+      this.orderService.addOrderToLS(order);
+    } else {
+      alert('Order is not added because model was not valid value')
     }
-
-    // all orders array will be used to display all curent added orders, but not all previosly stored - in this same component
-    this.orders.unshift(order);
-    // store to localStorage
-    this.orderService.addOrderToLS(order);
   }
 
-  validation(field) {
-    console.log(field)
-  }
+  // with input for brands i get choosen brand and depending of that i use it to get related models to this brand
+  // and result array i use to show these models in select/options
+  brandModels(inputBrand) {
+    this.choosenBrandModels = []; // to clear data array, if user changes mind of choosen brand, models dont mix
+    this.uniqueUsersCreatedModels.forEach((brandModels) => {
+      if (inputBrand.value == brandModels.brand) {
+        let onlyModels: any[] = brandModels.models;
+        onlyModels.forEach((item) => {
+          this.choosenBrandModels.push("--models--", item)
+        })
+      }
 
+    })
+    console.log(this.choosenBrandModels)
+
+  }
 }

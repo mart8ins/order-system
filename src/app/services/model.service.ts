@@ -38,27 +38,9 @@ export class ModelService {
       if (allUsers[i].username == userSession) {
         currentUserId = allUsers[i].id;
       }
-      console.log(currentUserId)
     }
     return currentUserId;
   }
-
-  // get_Stored_Model_Data_Logged_User() {
-  //   let userID = this.modelCreatedByUserId();
-  //   let createdModels = JSON.parse(localStorage.getItem('modelData'));
-  //   let models = [];
-
-  //   createdModels.forEach((modelData) => {
-  //     if (modelData.createdByUserId == userID) {
-  //       models.push(modelData.model)
-  //     }
-  //   })
-
-  //   // getting only unique models
-  //   let uniqueModels = [...new Set(models)];
-
-  //   return uniqueModels;
-  // }
 
   get_Stored_Model_Data_Logged_User() {
     let userID = this.modelCreatedByUserId();
@@ -66,35 +48,35 @@ export class ModelService {
 
     // for all registred inputs for brand
     let brands = [];
-    createdModels.forEach((modelData) => {
-      if (modelData.createdByUserId == userID) {
-        brands.push(modelData.brand)
-      }
-    })
-
-    // getting only unique models
-    let uniqueBrands = [...new Set(brands)];
-    console.log(uniqueBrands)
-    // storing brand -> all specific brands models
     let allModelOfBrand = [];
 
-    uniqueBrands.forEach((unique) => {
-      let brand = unique;
-      let models = [];
-
+    if (createdModels) {
       createdModels.forEach((modelData) => {
-        if (brand == modelData.brand) {
-          console.log(modelData.model)
-          models.push(modelData.model)
+        if (modelData.createdByUserId == userID) {
+          brands.push(modelData.brand)
         }
       })
-      allModelOfBrand.push({
-        brand,
-        models
+
+      // getting only unique models
+      let uniqueBrands = [...new Set(brands)];
+      // storing brand -> all specific brands models
+
+
+      uniqueBrands.forEach((unique) => {
+        let brand = unique;
+        let models = [];
+
+        createdModels.forEach((modelData) => {
+          if (brand == modelData.brand) {
+            models.push(modelData.model)
+          }
+        })
+        allModelOfBrand.push({
+          brand,
+          models
+        })
       })
-    })
-
-
+    }
     return allModelOfBrand
   }
 
