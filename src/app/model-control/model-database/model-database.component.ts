@@ -9,7 +9,13 @@ export class ModelDatabaseComponent implements OnInit {
 
   constructor() { }
 
+  intro: boolean;
+
   ngOnInit(): void {
+    this.intro = true;
   }
 
+  toShowComponent() {
+    this.intro = false;
+  }
 }

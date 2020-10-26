@@ -10,7 +10,7 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
                 Select a brand
             </label>
             <select required ngModel name="brand" id="" class="form-control" #brandValue #brand="ngModel"
-                (change)="brandModels(brand)">
+                (change)="brandModels(brand, fields)">
                 <!-- #brandValue ir priekš tā, lai pēc katra sumbita notīrītos lauks, #brand, lai sabindotu ngModel un piekļūtu 
                 konkrētā inputa opcijām -->
                 <option *ngFor="let brandRender of allBrands">{{brandRender}}</option>
@@ -25,11 +25,14 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
         daudzums -->
         <div ngModelGroup="orderData" class="orderDataStyle">
             <div class="form-group modelStyle">
-                <label>Model to order</label>
+                <label *ngIf="choosenBrandModels.length">Model to order</label>
+                <label *ngIf="!choosenBrandModels.length" class="noModelsAvaliable">Please add models in
+                    database</label>
                 <select required ngModel name="model"
                     type="text"
                     class="form-control"
                     #modelValue #model="ngModel">
+                    <option></option>
                     <option *ngFor="let model of choosenBrandModels">
                         {{model}}
                     </option>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../services/order.service';
 
 @Component({
   selector: 'app-all-orders',
@@ -7,26 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllOrdersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
+
+  loggedUserOrders: any[] = [];
 
   ngOnInit(): void {
+    this.loggedUserOrders = this.orderService.getLoggedUsersOrders();
   }
-
-  orders = [
-    {
-      date: 2020,
-      brand: "AEG",
-      model: 'ECCCXXX3',
-      quantity: 2,
-      recieved: true
-    },
-    {
-      date: 1020,
-      brand: "Bosch",
-      model: 'XXXXDDD',
-      quantity: 12,
-      recieved: false
-    }
-  ]
 
 }

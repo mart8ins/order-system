@@ -1,27 +1,28 @@
 <div class="container">
-
+    <!-- header -->
     <div class="row options-title">
-        <div class="col-2 status-date">
+        <div class="col-2">
             Order date
         </div>
-        <div class="col-2 status-brand">
+        <div class="col-2">
             Brand
         </div>
-        <div class="col-2 status-model">
+        <div class="col-2">
             Model
         </div>
-        <div class="col-2 status-quantity">
+        <div class="col-2">
             Quantity
         </div>
-        <div class="col-4 status-title">
+        <div class="col-4">
             Status
         </div>
     </div>
 
+
     <!-- actual data -->
-    <div *ngFor='let order of orders' class="row order">
+    <div *ngFor='let order of loggedUserOrders' class="row order">
         <div class="col-2 date">
-            {{order.date}}
+            {{order.created}}
         </div>
         <div class="col-2 brand">
             {{order.brand}}
@@ -30,15 +31,40 @@
             {{order.model}}
         </div>
         <div class="col-2 quantity">
-            {{order.quantity}}
+            <div>{{order.quantity}}</div>
         </div>
         <div class="col-4 status">
             <div *ngIf="order.recieved; else elseBlock">
-                Recieved <div class="green-circle"></div>
+                <span class="recieved">Recieved</span>
+                <div class="green-circle"></div>
             </div>
             <ng-template #elseBlock>
-                Awaiting delivery <div class="red-circle"></div>
+                <span class="awaiting">Awaiting delivery</span>
+                <div class="red-circle"></div>
             </ng-template>
         </div>
     </div>
 </div>
+
+<!-- <div *ngFor='let order of orders' class="row order">
+    <div class="col-2 date">
+        {{order.date}}
+    </div>
+    <div class="col-2 brand">
+        {{order.brand}}
+    </div>
+    <div class="col-2 model">
+        {{order.model}}
+    </div>
+    <div class="col-2 quantity">
+        {{order.quantity}}
+    </div>
+    <div class="col-4 status">
+        <div *ngIf="order.recieved; else elseBlock">
+            Recieved <div class="green-circle"></div>
+        </div>
+        <ng-template #elseBlock>
+            Awaiting delivery <div class="red-circle"></div>
+        </ng-template>
+    </div>
+</div> -->

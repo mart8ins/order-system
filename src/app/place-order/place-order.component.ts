@@ -23,7 +23,6 @@ export class PlaceOrderComponent implements OnInit {
   ngOnInit(): void {
     this.allBrands = Brands;
     this.uniqueUsersCreatedModels = this.modelService.get_Stored_Model_Data_Logged_User();
-    console.log(this.uniqueUsersCreatedModels, 'komponentē')
   }
 
   orders: any[] = [];
@@ -71,18 +70,16 @@ export class PlaceOrderComponent implements OnInit {
 
   // with input for brands i get choosen brand and depending of that i use it to get related models to this brand
   // and result array i use to show these models in select/options
-  brandModels(inputBrand) {
+  brandModels(inputBrand, fields) {
     this.choosenBrandModels = []; // to clear data array, if user changes mind of choosen brand, models dont mix
     this.uniqueUsersCreatedModels.forEach((brandModels) => {
       if (inputBrand.value == brandModels.brand) {
         let onlyModels: any[] = brandModels.models;
         onlyModels.forEach((item) => {
-          this.choosenBrandModels.push("--models--", item)
+          this.choosenBrandModels.push(item)
         })
       }
 
     })
-    console.log(this.choosenBrandModels)
-
   }
 }

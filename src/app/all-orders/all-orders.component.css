@@ -14,38 +14,57 @@
 
 /* actual  order data */
 .order {
-    display:flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    background-color: rgb(206, 236, 135);
-    
-}
-
-.order div {
     text-align: center;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    background-color: #288d7c;
+    font-weight: bold;
+    font-size: 18px;
 }
 
-.order-data {
-    display: flex;
-    justify-content: space-evenly;
-}
 
 .green-circle {
     position: relative;
-    left: 125px;
+    left: 80px;
     display: inline-block;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: rgb(19, 230, 19);
+    
 }
 
 .red-circle {
     position: relative;
-    left: 95px;
+    left: 45px;
     display: inline-block;
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: rgb(218, 53, 53);
+}
+
+.order div {
+    color: white;
+}
+.date {
+    font-size: 14px;
+}
+.quantity div {
+    background-color: #143b35;
+    text-align: center;
+    padding: 5px;
+    width: 50px;
+    margin: 0 auto;
+}
+
+.status .awaiting {
+    background-color: rgba(167, 51, 51, 0.671);
+    padding: 5px;
+}
+
+.status .recieved {
+    background-color: #19685b60;
+    padding: 5px;
 }

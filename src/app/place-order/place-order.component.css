@@ -78,4 +78,9 @@ button {
     transform: scale(1.1);
 }
 
+.noModelsAvaliable {
+    font-size: 22px;
+    padding: 10px;
+}
+
 

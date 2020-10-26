@@ -1,5 +1,5 @@
 <div class="container">
-
+    <!-- header -->
     <div class="row options-title">
         <div class="col-2 status-date">
             Order date
@@ -15,6 +15,32 @@
         </div>
         <div class="col-4 status-title">
             Status
+        </div>
+    </div>
+
+    <!-- actual data -->
+    <div *ngFor='let order of loggedUserOrders'>
+        <div *ngIf="!order.recieved" class="row order">
+            <div class="col-2 date">
+                {{order.created}}
+            </div>
+            <div class="col-2 brand">
+                {{order.brand}}
+            </div>
+            <div class="col-2 model">
+                {{order.model}}
+            </div>
+            <div class="col-2 quantity">
+                <div>{{order.quantity}}</div>
+            </div>
+            <div class="col-4 status">
+                <div class="awaiting">
+                    Awaiting delivery
+                </div>
+                <div>
+                    <button (click)="recievedOrder(order)" class="btn btn-dark">Recieved</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

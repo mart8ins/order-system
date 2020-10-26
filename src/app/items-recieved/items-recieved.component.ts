@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService } from '../services/order.service'
 
 @Component({
   selector: 'app-items-recieved',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsRecievedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private orderService: OrderService) { }
+
+  loggedUserOrders: any[] = [];
+  allRecievedOrders: any[] = [];
 
   ngOnInit(): void {
+    this.loggedUserOrders = this.orderService.getLoggedUsersOrders();
+    this.loggedUserOrders.forEach((order) => {
+      if (order.recieved) {
+        this.allRecievedOrders.push(order);
+      }
+    })
   }
-
 }

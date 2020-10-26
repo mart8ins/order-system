@@ -50,13 +50,13 @@ export class LoginComponent implements OnInit {
 
     let existingUsers = this.auth.getAllUsers();
     for (let i = 0; i < existingUsers.length; i++) {
-      console.log(existingUsers[i]);
       if (existingUsers[i].username == username && existingUsers[i].password == userPassword) {
         this.status.loginFailed = false;
         this.dataSharing.isUserLoggedIn.next(true);
         sessionStorage.setItem('username', username);
         sessionStorage.setItem('password', userPassword);
         this.router.navigateByUrl('/place-order');
+        return;
       } else {
         this.status.loginFailed = true;
         sessionStorage.clear();
