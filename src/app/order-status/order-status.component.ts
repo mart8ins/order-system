@@ -15,7 +15,7 @@ export class OrderStatusComponent implements OnInit {
     this.intro = true;
   }
 
-  toShowComponent() {
+  forIntro() {
     this.intro = false;
   }
 }

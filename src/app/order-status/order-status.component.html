@@ -1,10 +1,10 @@
 <div class="nav nav-tabs">
-    <a routerLink='awaiting-delivery' routerLinkActive="active-link">Awaiting delivery</a>
-    <a routerLink="items-recieved" routerLinkActive="active-link">Items recieved</a>
-    <a routerLink="all-orders" routerLinkActive="active-link">All orders</a>
+    <a routerLink='awaiting-delivery' routerLinkActive="active-link" (click)="forIntro()">Awaiting delivery</a>
+    <a routerLink="items-recieved" routerLinkActive="active-link" (click)="forIntro()">Items recieved</a>
+    <a routerLink="all-orders" routerLinkActive="active-link" (click)="forIntro()">All orders</a>
 </div>
 <!-- (click)="toShowComponent()" -->
-<!-- <div *ngIf="intro">
+<div *ngIf="intro">
     Informācija par statusiem
-</div> -->
+</div>
 <router-outlet></router-outlet>

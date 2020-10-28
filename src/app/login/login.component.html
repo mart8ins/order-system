@@ -11,5 +11,8 @@
             (click)='loginUser(loginInput.value, passwordInput.value); loginInput.value = ""; passwordInput.value = ""; '>Login
             in</button>
     </form>
-    <span *ngIf="status.loginFailed">{{status.loginFailMessage}}</span>
+    <div class="loginFailed">
+        <span *ngIf="status.loginFailed">{{status.loginFailMessage}}</span>
+    </div>
+
 </div>

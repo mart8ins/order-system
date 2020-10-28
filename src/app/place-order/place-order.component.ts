@@ -35,7 +35,7 @@ export class PlaceOrderComponent implements OnInit {
     this.usedIds.push(id)
     this.usedIds.forEach(item => {
       if (id == item) {
-        id = Math.floor(Math.random() * 100);
+        id = Math.floor(Math.random() * 1000);
       } else {
         return id;
       }
@@ -44,11 +44,11 @@ export class PlaceOrderComponent implements OnInit {
   }
 
   submit(fields) {
-    // getting users ID who is logged in, and ading this id to the order
-    let userid = this.orderService.orderUserID();
 
-    // if input field model is not with valid data than order is not placed
-    if (fields.value.orderData.model != '--models--') {
+    if (fields.value.brand && fields.value.orderData.model && fields.value.orderData.quantity) {
+      // getting users ID who is logged in, and ading this id to the order
+      let userid = this.orderService.orderUserID();
+
       // creates new order object
       let order = {
         userId: userid,
@@ -63,9 +63,13 @@ export class PlaceOrderComponent implements OnInit {
       this.orders.unshift(order);
       // store to localStorage
       this.orderService.addOrderToLS(order);
-    } else {
-      alert('Order is not added because model was not valid value')
     }
+
+    // to clear value in ngForm controls, but in html input field value is cleared with (click)="modelValue.value = ''; quantityValue.value = ''; brandValue.value = ''; "
+    fields.value.brand = '';
+    fields.value.orderData.model = '';
+    fields.value.orderData.quantity = '';
+
   }
 
   // with input for brands i get choosen brand and depending of that i use it to get related models to this brand

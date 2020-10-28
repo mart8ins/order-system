@@ -1,76 +1,49 @@
-.container-fluid {
+.container {
     margin-top: 80px;
     text-align: center;
 }
 
-.container-fluid form {
-    margin: auto;
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    border: 8px outset #351ca53a;
-    background-color: #73a4c2;;
-    padding: 10px;
-}
-.orderDataStyle {
-    display: flex;
-}
-
-
-button {
-    margin: 30px 0px;
-    padding: 20px;
-    font-size: 20px;
-    text-transform: uppercase;
-}
-
-.alert {
-    font-size: 12px;
-    position: absolute;
-    width: 200px;
-    padding: 2px;
-}
-
-.brandStyle {
-    background-color: black;
-    margin: 5px;
-    padding: 15px;
-    color: white;
-    font-weight: bold;
-    font-size: 30px;
-}
-
-.modelStyle, .quantityStyle {
+form {
     background-color: #203647;
-    padding: 15px;
-    color: white;
-    font-weight: bold;
-    font-size: 30px;
-    text-align: center;
-    margin: 5px;
-} 
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-.modelStyle input, .quantityStyle input {
+label {
+    color: white;
+    font-family: 'Merriweather', serif;
+}
+
+
+select, option, input {
     text-align: center;
+    font-size: 25px;
+}
+
+
+
+.form-control, .alert {
+    margin: 0 auto;
+    width: 200px;
 }
 
 
 /* all curently added orders */
 .created-order {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
 }
 .lastOrder {
     display: flex;
     font-weight: bold;
-    font-size: 22px;
+    font-size: 18px;
+    font-family: 'Karla', sans-serif;
     justify-content: space-around;
-    background-color: #EEFBFB;
-    padding: 15px;
-    box-shadow: 10px 10px 3px grey;
-    margin: 4px;
+    padding: 10px;
+    box-shadow: 10px 10px 3px #185f8b;
+    border: 5px solid  #185f8b;
+    border-radius: 5px;
+    margin: 10px;
     transition: 0.5s;
 }
 
@@ -78,8 +51,9 @@ button {
     transform: scale(1.1);
 }
 
+/* no models to show for brand*/
 .noModelsAvaliable {
-    font-size: 22px;
+    font-size: 18px;
     padding: 10px;
 }
 

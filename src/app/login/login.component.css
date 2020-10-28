@@ -16,3 +16,18 @@ form:hover {
     box-shadow: 18px 18px 14px #153244;
 }
 
+/* failed login */
+.loginFailed {
+    text-align: center;
+    font-size: 32px;
+    position: relative;
+    bottom: 180px;
+}
+.loginFailed span {
+    border: 8px solid #eed2d3;
+    background-color:  #233f50;
+    padding: 10px 20px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

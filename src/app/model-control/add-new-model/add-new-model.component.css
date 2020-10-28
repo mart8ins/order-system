@@ -1,0 +1,42 @@
+.container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+form {
+    background-color: #203647;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+label {
+    color: white;
+    font-family: 'Merriweather', serif;
+}
+
+
+select, option, input {
+    text-align: center;
+    font-size: 25px;
+}
+
+.form-control, .alert {
+    margin: 0 auto;
+    width: 300px;
+}
+
+/* latest added model to data base info msg*/
+.addedModelInfo {
+    position: absolute;
+    top: 140px;
+    padding: 10px;
+    background-color: #7cb6d4;
+    color: white;
+    border-radius: 10px;
+    font-family: 'Karla', sans-serif;
+    font-size: 22px;
+}
+.addedModelInfo span {
+    font-weight: bold;
+}

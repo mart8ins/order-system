@@ -21,6 +21,7 @@ export class AddNewModelComponent implements OnInit {
 
   allBrands;
   applianceTypes;
+  latestAddedModel: string;
 
   ngOnInit(): void {
     this.allBrands = Brands;
@@ -64,27 +65,32 @@ export class AddNewModelComponent implements OnInit {
 
 
   formSubmit = (form) => {
-    let userid = this.modelService.modelCreatedByUserId();
+    console.log(form.value)
+    if (form.value.brand && form.value.model && form.value.applianceType) {
+      let userid = this.modelService.modelCreatedByUserId();
 
-    let addModel = {
-      createdByUserId: userid,
-      brand: form.value.brand,
-      model: form.value.model.toUpperCase(),
-      applianceType: form.value.applianceType,
-      description: form.value.description
+      let addModel = {
+        createdByUserId: userid,
+        brand: form.value.brand,
+        model: form.value.model.toUpperCase(),
+        applianceType: form.value.applianceType,
+        description: form.value.description
+      }
+
+      this.modelService.storeModelToLS(addModel);
+
+      // for info msg about added model to data base
+      this.latestAddedModel = `${addModel.brand} ${addModel.model}`
+
+      // clears the form after submit, and also removes validation errors
+      this.form.controls.brand.setValue('');
+      this.form.controls.brand.markAsUntouched();
+      this.form.controls.model.setValue('');
+      this.form.controls.model.markAsUntouched();
+      this.form.controls.applianceType.setValue('');
+      this.form.controls.applianceType.markAsUntouched();
+      this.form.controls.description.setValue('');
+      this.form.controls.description.markAsUntouched();
     }
-
-    this.modelService.storeModelToLS(addModel);
-
-    console.log(form)
-    // clears the form after submit, and also removes validation errors
-    this.form.controls.brand.setValue('');
-    this.form.controls.brand.markAsUntouched();
-    this.form.controls.model.setValue('');
-    this.form.controls.model.markAsUntouched();
-    this.form.controls.applianceType.setValue('');
-    this.form.controls.applianceType.markAsUntouched();
-
   }
-
 }

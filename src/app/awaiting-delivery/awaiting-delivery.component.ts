@@ -23,9 +23,19 @@ export class AwaitingDeliveryComponent implements OnInit, OnChanges {
 
   // to update orders property in database to - true
   recievedOrder(order) {
+
+    // update local storage with new status
     let user = order.userId;
     let userOrder = order.orderId;
     this.orderService.updateOrderToRecieved(user, userOrder);
+
+    // after recieved button is pushed element is removed from dom
+    this.loggedUserOrders.forEach((order) => {
+      let orderIndex = this.loggedUserOrders.indexOf(order)
+      if (order.orderId == userOrder) {
+        this.loggedUserOrders.splice(orderIndex, 1);
+      }
+    })
   }
 
 }

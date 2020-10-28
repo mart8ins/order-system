@@ -19,7 +19,7 @@
     </div>
 
     <!-- actual data -->
-    <div *ngIf="allRecievedOrders; else noRecievedOrders">
+    <div *ngIf="allRecievedOrders.length; else noRecievedOrders">
         <div *ngFor='let order of allRecievedOrders' class="row order">
             <div class="col-2 date">
                 {{order.created}}
@@ -41,6 +41,6 @@
         </div>
     </div>
     <ng-template #noRecievedOrders>
-        No recieved orders to show
+        You dont have recieved orders
     </ng-template>
 </div>

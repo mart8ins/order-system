@@ -20,30 +20,36 @@
 
 
     <!-- actual data -->
-    <div *ngFor='let order of loggedUserOrders' class="row order">
-        <div class="col-2 date">
-            {{order.created}}
-        </div>
-        <div class="col-2 brand">
-            {{order.brand}}
-        </div>
-        <div class="col-2 model">
-            {{order.model}}
-        </div>
-        <div class="col-2 quantity">
-            <div>{{order.quantity}}</div>
-        </div>
-        <div class="col-4 status">
-            <div *ngIf="order.recieved; else elseBlock">
-                <span class="recieved">Recieved</span>
-                <div class="green-circle"></div>
+    <div *ngIf="loggedUserOrders.length; else elseBlock">
+        <div *ngFor='let order of loggedUserOrders' class="row order">
+            <div class="col-2 date">
+                {{order.created}}
             </div>
-            <ng-template #elseBlock>
-                <span class="awaiting">Awaiting delivery</span>
-                <div class="red-circle"></div>
-            </ng-template>
+            <div class="col-2 brand">
+                {{order.brand}}
+            </div>
+            <div class="col-2 model">
+                {{order.model}}
+            </div>
+            <div class="col-2 quantity">
+                <div>{{order.quantity}}</div>
+            </div>
+            <div class="col-4 status">
+                <div *ngIf="order.recieved; else elseBlock">
+                    <span class="recieved">Recieved</span>
+                    <div class="green-circle"></div>
+                </div>
+                <ng-template #elseBlock>
+                    <span class="awaiting">Awaiting delivery</span>
+                    <div class="red-circle"></div>
+                </ng-template>
+            </div>
         </div>
     </div>
+    <ng-template #elseBlock>
+        No orders to show!
+    </ng-template>
+
 </div>
 
 <!-- <div *ngFor='let order of orders' class="row order">

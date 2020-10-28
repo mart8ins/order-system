@@ -1,4 +1,11 @@
 <div class="container">
+
+    <div *ngIf="latestAddedModel">
+        <p class="addedModelInfo">
+            <span>{{latestAddedModel}}</span> added to the data base.
+        </p>
+    </div>
+
     <form [formGroup]="form">
         <!-- brand input field-->
         <div class="form-group">
@@ -9,7 +16,7 @@
                 type="text"
                 id="brand"
                 class="form-control">
-                <option>--select--</option>
+                <option></option>
                 <option *ngFor="let brandRender of allBrands">
                     {{brandRender}}
                 </option>
@@ -43,7 +50,7 @@
                 type="text"
                 id="type"
                 class="form-control">
-                <option>--select--</option>
+                <option></option>
                 <option *ngFor="let type of applianceTypes">
                     {{type}}
                 </option>

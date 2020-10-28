@@ -2,7 +2,7 @@
 ngForm un ngModelGroup izveido FormGroup objektu;
 ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz formas submitu
 -->
-<div class="container-fluid">
+<div class="container">
 
     <form #fields="ngForm" (ngSubmit)="submit(fields)">
         <div class="form-group brandStyle">
@@ -26,8 +26,9 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
         <div ngModelGroup="orderData" class="orderDataStyle">
             <div class="form-group modelStyle">
                 <label *ngIf="choosenBrandModels.length">Model to order</label>
-                <label *ngIf="!choosenBrandModels.length" class="noModelsAvaliable">Please add models in
-                    database</label>
+                <label *ngIf="!choosenBrandModels.length" class="noModelsAvaliable">There is no models for this brand
+                    added in database
+                    at this moment</label>
                 <select required ngModel name="model"
                     type="text"
                     class="form-control"
@@ -52,13 +53,13 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
                     <p class="alert alert-danger">This field is reqired</p>
                 </div>
             </div>
-
+            <button [disabled]="!fields.valid" type="submit"
+                class="btn btn-primary"
+                (click)="modelValue.value = ''; quantityValue.value = ''; brandValue.value = ''; ">Place
+                order</button>
         </div>
-
-
-        <button [disabled]="!fields.valid" type="submit" class="btn btn-primary"
-            (click)="modelValue.value = ''; quantityValue.value = ''; brandValue.value = ''; ">Place order</button>
     </form>
+    <!-- (click)="modelValue.value = ''; quantityValue.value = ''; brandValue.value = ''; " -->
 </div>
 
 
@@ -79,75 +80,3 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
         </div>
     </div>
 </div>
-
-
-<!-- <div class="container">
-
-    <form class="form-row">
-        <div class="col-3 form-group">
-            <label for="brend">Brend</label>
-            <select ngModel required name="brend" #brend="ngModel" (change)="log(brend)" class="form-control"
-                id="brend">
-                <option selected> -- Brand --</option>
-                <option>Bosch</option>
-                <option>SMEG</option>
-                <option>AEG</option>
-                <option>NEFF</option>
-            </select>
-            <div *ngIf="brend.touched && !brend.valid">
-                <div *ngIf="brend.errors.required" class="brend-alert">
-                    !
-                </div>
-            </div>
-        </div>
-
-        <div class="col-6 form-group">
-            <label for="item">Model </label>
-            <input required ngModel minlength="3" name="item" #item="ngModel" (change)="log(item)" type="text"
-                class="form-control" id="item">
-            <div *ngIf="item.touched && !item.valid">
-                <div *ngIf="item.errors.required" class="item-alert">
-                    !
-                </div>
-                <div *ngIf="item.errors.minlength.requiredLength" class="item-alert-length">
-                    !
-                </div>
-            </div>
-        </div>
-
-        <div class='col-1 form-group'>
-            <label for="quantity">Quantity</label>
-            <input ngModel required name="quantity" #quantity="ngModel" (change)="log(quantity)" type="number"
-                class="form-control" id="quantity">
-            <div class="quantity-alert" *ngIf="quantity.touched && !quantity.valid">!</div>
-        </div>
-
-        <div class="col-2 form-group">
-            <button type="submit" class="btn btn-primary"
-                (click)="orderSubmit($event, brend.value, item.value, quantity.value) ">Place
-                order</button>
-        </div>
-    </form>
-
-    shows currently added/last orders
-<div *ngIf="orders">
-    <div *ngFor="let order of orders">
-
-        <div class='recentlyAddedOrders'>
-            <div class="lastOrder">
-                <div class="lastOrderBrand">
-                    {{order.brend}}
-                </div>
-                <div class="lastOrderItem">
-                    {{order.item}}
-                </div>
-                <div class="lastOrderQuantity">
-                    {{order.quantity}} pc
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-
-<!-- </div> -->
