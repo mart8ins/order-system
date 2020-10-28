@@ -7,7 +7,9 @@ import { Brands } from "../../utilities/brands";
 import { AppliancesType } from '../../utilities/appliances-type'
 
 // service for storing new model
-import { ModelService } from '../../services/model.service'
+import { ModelService } from '../../services/model.service';
+// interfaces
+import { NewModel } from 'src/app/interfaces/new-model-create';
 
 
 @Component({
@@ -34,20 +36,19 @@ export class AddNewModelComponent implements OnInit {
       {
         let userid = this.modelService.modelCreatedByUserId();
 
-        let addModel = {
+        let newModel: NewModel = {
           createdByUserId: userid,
           brand: form.controls.brand.value,
           model: form.controls.model.value.toUpperCase(),
-          applianceType: form.controls.type.value,
+          type: form.controls.type.value,
           description: form.controls.descriptionvalue
         }
-        this.modelService.storeModelToLS(addModel);
+        this.modelService.storeModelToLS(newModel);
         // for info msg about added model to data base
-        this.latestAddedModel = `${addModel.brand} ${addModel.model}`
+        this.latestAddedModel = `${newModel.brand} ${newModel.model}`
       }
     }
     form.reset();
   }
-
 
 }
