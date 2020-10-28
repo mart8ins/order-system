@@ -40,3 +40,9 @@ select, option, input {
 .addedModelInfo span {
     font-weight: bold;
 }
+
+/* validation */
+
+.form-control.ng-touched.ng-invalid {
+    border: 2px solid rgb(201, 31, 31);
+}

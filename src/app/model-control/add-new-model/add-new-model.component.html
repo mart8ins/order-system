@@ -6,9 +6,104 @@
         </p>
     </div>
 
-    <form [formGroup]="form">
+    <form #ngF="ngForm" (ngSubmit)="submit(ngF)">
         <!-- brand input field-->
         <div class="form-group">
+            <label for="brand">Brand</label>
+            <select
+                type="text"
+                id="brand"
+                name="brand"
+                class="form-control"
+                ngModel
+                #brand="ngModel"
+                required>
+                <option></option>
+                <option *ngFor="let brandRender of allBrands">
+                    {{brandRender}}
+                </option>
+            </select>
+            <!-- validation -->
+            <div class="alert alert-danger" *ngIf="!brand.valid && brand.touched">Brand field is required</div>
+
+        </div>
+
+        <!-- model input field-->
+        <div class="form-group">
+            <label for="model">Model</label>
+            <input
+                type="text"
+                id="model"
+                class="form-control"
+                name="model"
+                ngModel
+                #model="ngModel"
+                required
+                minlength="3">
+            <div class="alert alert-danger" *ngIf="!model.valid && model.touched">
+                <div *ngIf="ngF.controls.model.errors.required">This field is required</div>
+                <div *ngIf="ngF.controls.model.errors.minlength">Minimum length for model is
+                    3 characters</div>
+            </div>
+
+        </div>
+
+        <!-- appliance type input field-->
+        <div class="form-group">
+            <label for="type">Appliance type</label>
+            <select
+                type="text"
+                id="type"
+                class="form-control"
+                name="type"
+                ngModel
+                #type="ngModel"
+                required>
+                <option></option>
+                <option *ngFor="let type of applianceTypes">
+                    {{type}}
+                </option>
+            </select>
+            <div *ngIf="!type.valid && type.touched" class="alert alert-danger">Type field is
+                required
+            </div>
+        </div>
+
+        <!-- description input field-->
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                type="text"
+                id="description"
+                cols="50"
+                rows="5"
+                class="form-control"
+                name="description"
+                ngModel
+                #description="ngModel">
+            </textarea>
+        </div>
+
+        <button [disabled]="!ngF.valid" type="submit" class="btn btn-primary">Add</button>
+
+    </form>
+</div>
+
+
+
+
+<!-- 
+<div class="container">
+
+    <div *ngIf="latestAddedModel">
+        <p class="addedModelInfo">
+            <span>{{latestAddedModel}}</span> added to the data base.
+        </p>
+    </div>
+
+    <form [formGroup]="form"> -->
+<!-- brand input field-->
+<!-- <div class="form-group">
             <label for="brand">Brand</label>
 
             <select
@@ -22,14 +117,14 @@
                 </option>
             </select>
             <div *ngIf="brand.touched && brand.invalid" class="alert alert-danger">
-                <div *ngIf="brand.errors.required">Brand field is required</div>
-                <!-- <div *ngIf="brand.errors.cannotContainSpace">Brand cannot contain space</div>
+                <div *ngIf="brand.errors.required">Brand field is required</div> -->
+<!-- <div *ngIf="brand.errors.cannotContainSpace">Brand cannot contain space</div>
                 <div *ngIf="brand.errors.cannotContainNumber">Brand should contain only letters</div> -->
-            </div>
-        </div>
+<!-- </div>
+        </div> -->
 
-        <!-- model input field-->
-        <div class="form-group">
+<!-- model input field-->
+<!-- <div class="form-group">
             <label for="model">Model</label>
             <input
                 formControlName="model"
@@ -40,10 +135,10 @@
                 <div *ngIf="model.errors.required">Model field is required</div>
                 <div *ngIf="model.errors.cannotContainSpace">Model cannot contain space</div>
             </div>
-        </div>
+        </div> -->
 
-        <!-- appliance type input field-->
-        <div class="form-group">
+<!-- appliance type input field-->
+<!-- <div class="form-group">
             <label for="type">Appliance type</label>
             <select
                 formControlName="applianceType"
@@ -58,10 +153,10 @@
             <div *ngIf="applianceType.touched && applianceType.invalid" class="alert alert-danger">Type field is
                 required
             </div>
-        </div>
+        </div> -->
 
-        <!-- description input field-->
-        <div class="form-group">
+<!-- description input field-->
+<!-- <div class="form-group">
             <label for="description">Description</label>
             <textarea
                 formControlName="description"
@@ -78,4 +173,4 @@
              ">Add</button>
 
     </form>
-</div>
+</div> -->
