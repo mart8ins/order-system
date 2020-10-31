@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -7,29 +8,47 @@ export class ModelService {
 
   constructor() { }
 
+  modelAlreadyExists: boolean;
+
   // to get existing models in database
   getModelDataFromLS = () => {
     let modelDataAll = JSON.parse(localStorage.getItem("modelData"));
     return modelDataAll;
   }
 
+
+  // returning boolean if added model to database already exists
+  isModelAdded() {
+    return this.modelAlreadyExists;
+  }
+
   // update model database
   storeModelToLS = (newModel) => {
     let dataFromLS = this.getModelDataFromLS();
     let dataUpdateToLS = [];
+    let userID = this.modelCreatedByUserId();
 
+    // check if added model already exists in database, if not than update database
     if (dataFromLS) {
       for (let i = 0; i < dataFromLS.length; i++) {
+        if (userID == dataFromLS[i].createdByUserId && newModel.model == dataFromLS[i].model) {
+          this.modelAlreadyExists = true;
+          return;
+        }
+        this.modelAlreadyExists = false;
         dataUpdateToLS.push(dataFromLS[i]);
+        console.log(dataFromLS[i])
       }
       dataUpdateToLS.push(newModel);
       localStorage.setItem('modelData', JSON.stringify(dataUpdateToLS))
     } else {
       localStorage.setItem('modelData', JSON.stringify([newModel]))
     }
-
   }
-  // getting users ID who placed the order
+
+
+
+  // getting logged users ID
   modelCreatedByUserId = () => {
     let userSession = sessionStorage.getItem("username");
     let allUsers = JSON.parse(localStorage.getItem("Users"));
@@ -41,6 +60,7 @@ export class ModelService {
     }
     return currentUserId;
   }
+
 
 
   // get all model names for choosen brand
@@ -62,6 +82,9 @@ export class ModelService {
     return ModelsOfBrand
   }
 
+
+
+  // get all model data for logged user
   get_all_model_data_logged_user() {
     let userID = this.modelCreatedByUserId();
     let userModelData = [];

@@ -1,8 +1,11 @@
 <div class="container">
 
     <div *ngIf="latestAddedModel">
-        <p class="addedModelInfo">
-            <span>{{latestAddedModel}}</span> added to the data base.
+        <p *ngIf="!addedModelAlreadyExists" class="addedModelInfo">
+            <span>{{latestAddedModel}}</span>
+        </p>
+        <p *ngIf="addedModelAlreadyExists" class="modelAlreadyExists">
+            <span>{{latestAddedModel}}</span>
         </p>
     </div>
 

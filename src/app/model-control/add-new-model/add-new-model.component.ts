@@ -24,6 +24,7 @@ export class AddNewModelComponent implements OnInit {
   allBrands;
   applianceTypes;
   latestAddedModel: string;
+  addedModelAlreadyExists: boolean;
 
   ngOnInit(): void {
     this.allBrands = Brands;
@@ -44,11 +45,19 @@ export class AddNewModelComponent implements OnInit {
           // description: form.controls.descriptionvalue
         }
         this.modelService.storeModelToLS(newModel);
+        this.addedModelAlreadyExists = this.modelService.isModelAdded();
+        if (!this.addedModelAlreadyExists) {
+          this.latestAddedModel = `${newModel.brand} ${newModel.model} added to the data base.`
+        } else {
+          this.latestAddedModel = `Model ${newModel.model} already exists in database!`
+        }
         // for info msg about added model to data base
-        this.latestAddedModel = `${newModel.brand} ${newModel.model}`
+
       }
     }
+
     form.reset();
+    console.log(this.addedModelAlreadyExists)
   }
 
 }

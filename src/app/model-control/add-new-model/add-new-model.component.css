@@ -41,6 +41,22 @@ select, option, input {
     font-weight: bold;
 }
 
+.modelAlreadyExists {
+    position: absolute;
+    top: 140px;
+    right: 230px;
+    padding: 10px;
+    background-color: #cf1818;
+    color: white;
+    border-radius: 10px;
+    font-family: 'Karla', sans-serif;
+    font-size: 22px;
+}
+
+.modelAlreadyExists span {
+    font-weight: bold;
+}
+
 /* validation */
 
 .form-control.ng-touched.ng-invalid {
