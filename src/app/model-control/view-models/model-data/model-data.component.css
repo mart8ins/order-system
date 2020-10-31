@@ -1,23 +1,19 @@
 .brand_model {
     text-align: center;
     padding: 5px;
-}
-.brand_model h3 {
-    background-color: black;
     color: white;
-    padding: 5px;
+    border-bottom: 2px solid white;
 }
+
 .type {
     color: white;
     padding: 0 10px;
     margin: 0;
+    border-bottom: 1px solid white;
+    border-width: 50%;
 }
 
-.description {
-    text-justify: unset;
-    background-color: white;
-    color: black;
-    height: 150px;
-    padding: 5px;
-    text-justify: unset;
+.underConstruction {
+    font-size: 18px;
+    color: blue;
 }

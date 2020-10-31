@@ -1,6 +1,5 @@
 
 .container {
-    background-color: rgba(240, 255, 240, 0.555);
     margin: 0 auto;
 }
 
@@ -11,9 +10,24 @@
 }
 
 .model {
+    border-radius: 5px;
     height: 300px;
     width: 200px;
-    background-color: rgba(54, 58, 97, 0.205);
     margin: 5px;
     padding: 5px;
+    box-shadow: 0px 0px 5px inset black;
+    transition: 0.5s;
+    background-color: black;
+    opacity: 0.2;
+}
+
+.model:hover {
+    height: 300px;
+    width: 200px;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 6px 6px 9px black;
+    transform: scale(1.02);
+    opacity: 0.8;
+    cursor: pointer;
 }

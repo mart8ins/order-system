@@ -39,14 +39,14 @@
                         Awaiting delivery
                     </div>
                     <div>
-                        <button (click)="recievedOrder(order)" class="btn btn-dark">Recieved</button>
+                        <button (click)="recievedOrder(order)" class="btn btn-primary">Recieved</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <ng-template #elseBlock>
-        You dont have any orders in progress!
+        <p class="noOrders">You dont have any orders in progress!</p>
     </ng-template>
 
 
