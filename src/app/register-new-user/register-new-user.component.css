@@ -16,3 +16,18 @@ form:hover {
     box-shadow: 18px 18px 14px #153244;
 }
 
+.registrationErr {
+    text-align: center;
+    font-size: 12px;
+    position: relative;
+    bottom: 120px;
+}
+.registrationErr div {
+    border: 2px solid #eed2d3;
+    background-color:  #233f50;
+    padding: 10px 20px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+

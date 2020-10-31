@@ -11,6 +11,8 @@ export class RegisterNewUserComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
 
+  registrationError: boolean;
+
   ngOnInit(): void {
   }
 
@@ -19,15 +21,26 @@ export class RegisterNewUserComponent implements OnInit {
     return id;
   }
 
+
+
   newUser(forma) {
-    let user = {
-      id: this.generateUserId(),
-      username: forma.form.value.username,
-      password: forma.form.value.password
-    };
-    /* create a new user in localStorage*/
-    this.auth.registerNewUser(user);
-    this.router.navigateByUrl('/place-order');
+    let usernameValidation = new RegExp('^[A-Za-z0-9]{0,10}$');
+    let passwordValidation = new RegExp('^[A-Za-z0-9]{6,}$');
+
+    if (usernameValidation.test(forma.form.value.username) && passwordValidation.test(forma.form.value.password)) {
+      let user = {
+        id: this.generateUserId(),
+        username: forma.form.value.username,
+        password: forma.form.value.password
+      };
+      /* create a new user in localStorage*/
+      this.auth.registerNewUser(user);
+      this.router.navigateByUrl('/place-order');
+      this.registrationError = false;
+    } else {
+      this.registrationError = true;
+    }
   }
+
 
 }

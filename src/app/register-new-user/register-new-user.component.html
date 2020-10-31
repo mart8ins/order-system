@@ -23,9 +23,13 @@
             class='btn btn-dark'>
             Register
         </button>
-
     </form>
 
-    <!-- <span *ngIf="status.loginFailed">{{status.loginFailMessage}}</span> -->
-    <!-- (click)='newUser(username.value, passwordInput.value); username.value = ""; passwordInput.value = ""; '> -->
+    <div *ngIf="registrationError" class="registrationErr">
+        <div>
+            <h2>Registration failed!</h2> Possible reasons - username contains special character or is more
+            than 10 characters. Password should contain at least 6 characters/digits and cant contain special
+            characters.
+        </div>
+    </div>
 </div>
