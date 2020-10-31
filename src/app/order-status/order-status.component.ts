@@ -10,6 +10,11 @@ export class OrderStatusComponent implements OnInit {
   constructor() { }
 
   intro: boolean;
+  statusInfo = {
+    awaiting: false,
+    recieved: false,
+    allorders: false
+  }
 
   ngOnInit(): void {
     this.intro = true;
@@ -17,5 +22,24 @@ export class OrderStatusComponent implements OnInit {
 
   forIntro() {
     this.intro = false;
+  }
+
+  showStatusInfo(infostatus) {
+    switch (infostatus.textContent) {
+      case "Awaiting delivery...":
+        this.statusInfo.awaiting ? this.statusInfo.awaiting = false : this.statusInfo.awaiting = true;
+        break;
+      case "Items recieved...":
+        this.statusInfo.recieved ? this.statusInfo.recieved = false : this.statusInfo.recieved = true;
+        break;
+      case "All orders...":
+        this.statusInfo.allorders ? this.statusInfo.allorders = false : this.statusInfo.allorders = true;
+        break;
+
+    }
+
+
+
+    // this.statusInfo ? this.statusInfo = false : this.statusInfo = true;
   }
 }

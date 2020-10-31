@@ -41,7 +41,7 @@ export class AddNewModelComponent implements OnInit {
           brand: form.controls.brand.value,
           model: form.controls.model.value.toUpperCase(),
           type: form.controls.type.value,
-          description: form.controls.descriptionvalue
+          // description: form.controls.descriptionvalue
         }
         this.modelService.storeModelToLS(newModel);
         // for info msg about added model to data base

@@ -16,6 +16,7 @@ import { ViewModelsComponent } from './model-control/view-models/view-models.com
 import { AddNewModelComponent } from './model-control/add-new-model/add-new-model.component';
 import { ModelDatabaseComponent } from './model-control/model-database/model-database.component';
 import { RegisterNewUserComponent } from './register-new-user/register-new-user.component';
+import { ModelDataComponent } from './model-control/view-models/model-data/model-data.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegisterNewUserComponent } from './register-new-user/register-new-user.
     ViewModelsComponent,
     AddNewModelComponent,
     ModelDatabaseComponent,
-    RegisterNewUserComponent
+    RegisterNewUserComponent,
+    ModelDataComponent
   ],
   imports: [
     BrowserModule,

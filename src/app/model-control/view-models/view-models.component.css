@@ -1,0 +1,19 @@
+
+.container {
+    background-color: rgba(240, 255, 240, 0.555);
+    margin: 0 auto;
+}
+
+.models_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.model {
+    height: 300px;
+    width: 200px;
+    background-color: rgba(54, 58, 97, 0.205);
+    margin: 5px;
+    padding: 5px;
+}

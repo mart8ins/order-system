@@ -1,1 +1,8 @@
-<p>view-models works!</p>
+<div class="container">
+    <div class="models_container">
+        <div *ngFor="let model of userModels" class="model">
+            <!-- component what renders models data-->
+            <app-model-data [modelData]="model"></app-model-data>
+        </div>
+    </div>
+</div>

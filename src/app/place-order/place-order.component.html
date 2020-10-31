@@ -10,12 +10,12 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
                 Select a brand
             </label>
             <select required ngModel name="brand" id="" class="form-control" #brandValue #brand="ngModel"
-                (change)="brandModels(brand, fields)">
+                (change)="brandModels(brand)">
                 <!-- #brandValue ir priekš tā, lai pēc katra sumbita notīrītos lauks, #brand, lai sabindotu ngModel un piekļūtu 
                 konkrētā inputa opcijām -->
                 <option *ngFor="let brandRender of allBrands">{{brandRender}}</option>
             </select>
-            <div *ngIf="quantity.touched && !brand.valid">
+            <div *ngIf="brand.touched && !brand.valid">
                 <p class="alert alert-danger">This field is reqired</p>
             </div>
         </div>
@@ -26,9 +26,10 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
         <div ngModelGroup="orderData" class="orderDataStyle">
             <div class="form-group modelStyle">
                 <label *ngIf="choosenBrandModels.length">Model to order</label>
-                <label *ngIf="!choosenBrandModels.length" class="noModelsAvaliable">There is no models for this brand
-                    added in database
-                    at this moment</label>
+                <label *ngIf="!choosenBrandModels.length" class="noModelsAvaliable">No models to show for current brand!
+                    Go to database
+                    control and add some
+                </label>
                 <select required ngModel name="model"
                     type="text"
                     class="form-control"
@@ -38,7 +39,7 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
                         {{model}}
                     </option>
                 </select>
-                <div *ngIf="!model.valid && model.touched">
+                <div *ngIf="!model.valid && model.touched && choosenBrandModels.length">
                     <p class="alert alert-danger">This field is reqired</p>
                 </div>
             </div>
@@ -49,13 +50,12 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
                 </label>
                 <input required ngModel name="quantity" type="number" class="form-control" #quantityValue
                     #quantity="ngModel">
-                <div *ngIf="!quantity.valid && quantity.touched">
+                <div *ngIf="!quantity.valid && quantity.touched && choosenBrandModels.length">
                     <p class="alert alert-danger">This field is reqired</p>
                 </div>
             </div>
             <button [disabled]="!fields.valid" type="submit"
-                class="btn btn-primary"
-                (click)="modelValue.value = ''; quantityValue.value = ''; brandValue.value = ''; ">Place
+                class="btn btn-primary">Place
                 order</button>
         </div>
     </form>

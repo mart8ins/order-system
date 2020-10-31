@@ -1,5 +1,5 @@
 form {
-    margin: 300px auto;
+    margin: 200px auto;
     width: 300px;
     transition: 0.5s;
     background-color: #185f8b;
@@ -21,7 +21,7 @@ form:hover {
     text-align: center;
     font-size: 32px;
     position: relative;
-    bottom: 180px;
+    bottom: 120px;
 }
 .loginFailed span {
     border: 8px solid #eed2d3;

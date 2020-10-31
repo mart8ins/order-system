@@ -23,12 +23,14 @@ export class OrderService {
     // logged users ID
     let loggedUser = this.orderUserID();
 
-    allOrders.forEach((order) => {
-      if (order.userId == loggedUser) {
-        currentUsersOrders.push(order)
-      }
-    })
-    return currentUsersOrders;
+    if (allOrders) {
+      allOrders.forEach((order) => {
+        if (order.userId == loggedUser) {
+          currentUsersOrders.push(order)
+        }
+      })
+    }
+    return currentUsersOrders ? currentUsersOrders : null;
   }
 
   // add new order to localStorage

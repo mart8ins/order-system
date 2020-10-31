@@ -24,3 +24,42 @@ color: white;
 .active-link {
     color: white;
 }
+
+.intro {
+    width: 60%;
+    height: 60%;
+    border: 12px solid #203647;
+    box-shadow: 50px 40px 20px rgb(85, 77, 77), 20px 20px 20px rgb(154, 207, 154);
+    margin: 80px auto;
+    padding: 50px;
+
+}
+.intro h2 {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 32px;
+}
+.intro ul {
+    list-style-type: none;
+    margin: 40px 0 0;
+}
+.intro ul li {
+    padding: 25px;
+    margin-top: 3px;
+    color: white;
+    font-size: 18px;
+    background-color: #7f99ad;
+    border-bottom: 1px solid #203647;
+    border-radius: 5px;
+    font-family: Karla;
+}
+.intro ul li:hover {
+    cursor: pointer;
+    background-color: #5e84a1;
+}
+
+span {
+    margin: 20px;
+    display: block;
+    font-family: Karla;
+}

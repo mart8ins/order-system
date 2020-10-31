@@ -2,6 +2,5 @@ export interface NewModel {
     createdByUserId: number,
     brand: string,
     model: string,
-    type: string,
-    description: string
+    type: string
 }

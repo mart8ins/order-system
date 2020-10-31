@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModelService } from 'src/app/services/model.service';
 
 @Component({
   selector: 'app-view-models',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewModelsComponent implements OnInit {
 
-  constructor() { }
+  userModels: any[];
+
+  constructor(private modelService: ModelService) { }
 
   ngOnInit(): void {
+    this.userModels = this.modelService.get_all_model_data_logged_user();
   }
 
 }

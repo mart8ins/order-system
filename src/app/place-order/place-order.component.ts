@@ -4,6 +4,7 @@ import { ModelService } from '../services/model.service';
 
 // data to render in select option
 import { Brands } from '../utilities/brands';
+import { NewOrder } from '../interfaces/new-order-create';
 
 
 @Component({
@@ -16,17 +17,16 @@ export class PlaceOrderComponent implements OnInit {
   constructor(private orderService: OrderService, private modelService: ModelService) {
   }
 
+
   allBrands: string[] = [];
-  uniqueUsersCreatedModels: any[] = [];
   choosenBrandModels: string[] = [];
-
-  ngOnInit(): void {
-    this.allBrands = Brands;
-    this.uniqueUsersCreatedModels = this.modelService.get_Stored_Model_Data_Logged_User();
-  }
-
   orders: any[] = [];
   usedIds: number[] = [];
+
+  ngOnInit(): void {
+    // to show all brands in select/options for brand
+    this.allBrands = Brands;
+  }
 
 
   // generates random id for new order
@@ -43,14 +43,13 @@ export class PlaceOrderComponent implements OnInit {
     return id;
   }
 
+  // form submit
   submit(fields) {
-
     if (fields.value.brand && fields.value.orderData.model && fields.value.orderData.quantity) {
       // getting users ID who is logged in, and ading this id to the order
       let userid = this.orderService.orderUserID();
-
       // creates new order object
-      let order = {
+      let order: NewOrder = {
         userId: userid,
         orderId: this.generateId(),
         brand: fields.value.brand,
@@ -64,26 +63,11 @@ export class PlaceOrderComponent implements OnInit {
       // store to localStorage
       this.orderService.addOrderToLS(order);
     }
-
-    // to clear value in ngForm controls, but in html input field value is cleared with (click)="modelValue.value = ''; quantityValue.value = ''; brandValue.value = ''; "
-    fields.value.brand = '';
-    fields.value.orderData.model = '';
-    fields.value.orderData.quantity = '';
-
+    fields.reset();
   }
 
-  // with input for brands i get choosen brand and depending of that i use it to get related models to this brand
-  // and result array i use to show these models in select/options
-  brandModels(inputBrand, fields) {
-    this.choosenBrandModels = []; // to clear data array, if user changes mind of choosen brand, models dont mix
-    this.uniqueUsersCreatedModels.forEach((brandModels) => {
-      if (inputBrand.value == brandModels.brand) {
-        let onlyModels: any[] = brandModels.models;
-        onlyModels.forEach((item) => {
-          this.choosenBrandModels.push(item)
-        })
-      }
-
-    })
+  // to show all added models for current choosen brand
+  brandModels(inputBrand) {
+    this.choosenBrandModels = this.modelService.get_Stored_Model_Data_Logged_User(inputBrand.value);
   }
 }

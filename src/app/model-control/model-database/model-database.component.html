@@ -4,7 +4,15 @@
 </div>
 
 <!-- (click)="forIntro()" -->
-<div *ngIf="intro">
-    Informācija par datubāzes kontroli
+<div class="intro" *ngIf="intro">
+    <h2>Informācija par datubāzi</h2>
+    <ul>
+        <li (click)="showStatusInfo(viewModels)" #viewModels>View models...</li><span
+            *ngIf="statusInfo.viewModels">Var apskatīt visus datubāzei pievienotos modeļus.</span>
+
+        <li (click)="showStatusInfo(newModel)" #newModel>Add new model to database...</li><span
+            *ngIf="statusInfo.newModel">Pievieno jaunu modeli datubāzei. Pēc tam iespējams veikt uz šo modeli
+            pasūtījumu.</span>
+    </ul>
 </div>
 <router-outlet></router-outlet>

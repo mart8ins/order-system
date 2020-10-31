@@ -42,42 +42,39 @@ export class ModelService {
     return currentUserId;
   }
 
-  get_Stored_Model_Data_Logged_User() {
+
+  // get all model names for choosen brand
+  get_Stored_Model_Data_Logged_User(inputBrand) {
+    // to store all models for current brand
+    let ModelsOfBrand = [];
+
+    // get logged user id and all modelData
     let userID = this.modelCreatedByUserId();
     let createdModels: any[] = JSON.parse(localStorage.getItem('modelData'));
 
-    // for all registred inputs for brand
-    let brands = [];
-    let allModelOfBrand = [];
-
     if (createdModels) {
-      createdModels.forEach((modelData) => {
-        if (modelData.createdByUserId == userID) {
-          brands.push(modelData.brand)
+      for (let i = 0; i < createdModels.length; i++) {
+        if (createdModels[i].createdByUserId == userID && createdModels[i].brand == inputBrand) {
+          ModelsOfBrand.push(createdModels[i].model)
+        }
+      }
+    }
+    return ModelsOfBrand
+  }
+
+  get_all_model_data_logged_user() {
+    let userID = this.modelCreatedByUserId();
+    let userModelData = [];
+    let allCreatedModels: any[] = JSON.parse(localStorage.getItem('modelData'));
+
+    if (allCreatedModels) {
+      allCreatedModels.forEach((createdModel) => {
+        if (userID == createdModel.createdByUserId) {
+          userModelData.push(createdModel)
         }
       })
-
-      // getting only unique models
-      let uniqueBrands = [...new Set(brands)];
-      // storing brand -> all specific brands models
-
-
-      uniqueBrands.forEach((unique) => {
-        let brand = unique;
-        let models = [];
-
-        createdModels.forEach((modelData) => {
-          if (brand == modelData.brand) {
-            models.push(modelData.model)
-          }
-        })
-        allModelOfBrand.push({
-          brand,
-          models
-        })
-      })
     }
-    return allModelOfBrand
+    return userModelData ? userModelData : null;
   }
 
 
