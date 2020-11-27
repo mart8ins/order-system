@@ -1,53 +1,57 @@
 <div class="container">
-    <!-- header -->
-    <div class="row options-title">
-        <div class="col-2 status-date">
-            Order date
+    <div @awaitingAnimation>
+        <!-- header -->
+        <div class="row options-title">
+            <div class="col-2 status-date">
+                Order date
+            </div>
+            <div class="col-2 status-brand">
+                Brand
+            </div>
+            <div class="col-2 status-model">
+                Model
+            </div>
+            <div class="col-2 status-quantity">
+                Quantity
+            </div>
+            <div class="col-4 status-title">
+                Status
+            </div>
         </div>
-        <div class="col-2 status-brand">
-            Brand
-        </div>
-        <div class="col-2 status-model">
-            Model
-        </div>
-        <div class="col-2 status-quantity">
-            Quantity
-        </div>
-        <div class="col-4 status-title">
-            Status
-        </div>
-    </div>
 
-    <!-- actual data -->
-    <div *ngIf="loggedUserOrders.length; else elseBlock">
-        <div *ngFor='let order of loggedUserOrders' @slideAnim>
-            <div *ngIf="!order.recieved" class="row order">
-                <div class="col-2 date">
-                    {{order.created}}
-                </div>
-                <div class="col-2 brand">
-                    {{order.brand}}
-                </div>
-                <div class="col-2 model">
-                    {{order.model}}
-                </div>
-                <div class="col-2 quantity">
-                    <div>{{order.quantity}}</div>
-                </div>
-                <div class="col-4 status">
-                    <div class="awaiting">
-                        Awaiting delivery
+        <!-- actual data -->
+        <div *ngIf="loggedUserOrders.length; else elseBlock">
+            <div *ngFor='let order of loggedUserOrders'
+                @slideAnim
+                (@slideAnim.start)='animationStarted($event)'
+                (@slideAnim.done)='animationDone($event)'>
+                <div *ngIf="!order.recieved" class="row order">
+                    <div class="col-2 date">
+                        {{order.created}}
                     </div>
-                    <div>
-                        <button (click)="recievedOrder(order)" class="btn btn-primary">Recieved</button>
+                    <div class="col-2 brand">
+                        {{order.brand}}
+                    </div>
+                    <div class="col-2 model">
+                        {{order.model}}
+                    </div>
+                    <div class="col-2 quantity">
+                        <div>{{order.quantity}}</div>
+                    </div>
+                    <div class="col-4 status">
+                        <div class="awaiting">
+                            Awaiting delivery
+                        </div>
+                        <div>
+                            <button (click)="recievedOrder(order)" class="btn btn-primary">Recieved</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <ng-template #elseBlock>
+            <p class="noOrders">You dont have any orders in progress!</p>
+        </ng-template>
     </div>
-    <ng-template #elseBlock>
-        <p class="noOrders">You dont have any orders in progress!</p>
-    </ng-template>
-
 
 </div>

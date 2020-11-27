@@ -19,7 +19,7 @@
     </div>
 
     <!-- actual data -->
-    <div *ngIf="allRecievedOrders.length; else noRecievedOrders">
+    <div *ngIf="allRecievedOrders.length; else noRecievedOrders" @fadeIn>
         <div *ngFor='let order of allRecievedOrders' class="row order">
             <div class="col-2 date">
                 {{order.created}}

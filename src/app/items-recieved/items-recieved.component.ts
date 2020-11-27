@@ -1,10 +1,19 @@
+import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../services/order.service'
+import { fadeInAnimation } from '../utilities/animations';
 
 @Component({
   selector: 'app-items-recieved',
   templateUrl: './items-recieved.component.html',
-  styleUrls: ['./items-recieved.component.css']
+  styleUrls: ['./items-recieved.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        useAnimation(fadeInAnimation, { params: { duration: '500ms' } })
+      ])
+    ])
+  ]
 })
 export class ItemsRecievedComponent implements OnInit {
 

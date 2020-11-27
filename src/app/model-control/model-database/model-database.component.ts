@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { fadeInAnimation } from 'src/app/utilities/animations';
 
 @Component({
   selector: 'app-model-database',
@@ -8,9 +9,9 @@ import { animate, style, transition, trigger } from '@angular/animations';
   animations: [
     trigger('fadeInAnim', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate(500, style({ opacity: 1 }))
+        useAnimation(fadeInAnimation, { params: { duration: '500ms' } })
       ])
+
     ])
   ]
 })

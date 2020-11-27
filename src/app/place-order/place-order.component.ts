@@ -7,7 +7,7 @@ import { Brands } from '../utilities/brands';
 import { NewOrder } from '../interfaces/new-order-create';
 
 // animations
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 
 @Component({

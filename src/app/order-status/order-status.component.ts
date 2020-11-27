@@ -1,6 +1,7 @@
 
-import { animate, style, transition, trigger } from '@angular/animations';
+import { animate, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { fadeInAnimation } from '../utilities/animations';
 
 @Component({
   selector: 'app-order-status',
@@ -9,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
   animations: [
     trigger('fadeInAnim', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate(500, style({ opacity: 1 }))
+        useAnimation(fadeInAnimation, { params: { duration: '500ms' } })
       ])
+
     ])
   ]
 })

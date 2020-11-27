@@ -25,9 +25,27 @@ export let slide = trigger('slide', [
     )
 ])
 
+
+
+export let fadeInAnimation = animation([
+    style({ opacity: 0 }),
+    animate('{{ duration }} {{ easing }}') // parametri, ko katrā komponentē var mainīt
+], {
+    params: { // default vērtības animācijai
+        duration: '2s',
+        easing: 'ease-out'
+    }
+})
+
+export let fadeOutAnimation = animation([
+    animate(1000, style({ opacity: 0 }))
+])
+
 export let fade = trigger('fade', [
-    state('void', style({ opacity: 0 })),
-    transition(':enter, :leave', [
-        animate(1000)
-    ])
+    transition(':enter',
+        useAnimation(fadeInAnimation)
+    ),
+    transition(':leave',
+        useAnimation(fadeOutAnimation)
+    )
 ])

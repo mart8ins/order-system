@@ -20,7 +20,7 @@
 
 
     <!-- actual data -->
-    <div *ngIf="loggedUserOrders.length; else elseBlock">
+    <div *ngIf="loggedUserOrders.length; else elseBlock" @fadeIn>
         <div *ngFor='let order of loggedUserOrders' class="row order">
             <div class="col-2 date">
                 {{order.created}}
