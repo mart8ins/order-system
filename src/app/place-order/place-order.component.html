@@ -65,7 +65,9 @@ ngForm vēl izdod metodi (ngSubmit), kur var saukt funkciju, kas iedarbosies uz 
 
 
 <div *ngIf="orders" class="created-order">
-    <div *ngFor="let order of orders" class="lastOrder">
+    <div *ngFor="let order of orders"
+        class="lastOrder"
+        @fade>
         <div>
             {{order.brand}}
         </div>

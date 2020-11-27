@@ -1,10 +1,21 @@
+import { animate, style, transition, trigger, useAnimation } from '@angular/animations';
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { OrderService } from '../services/order.service';
+import { bounceOutLeftAnimation, slide } from '../utilities/animations';
 
 @Component({
   selector: 'app-awaiting-delivery',
   templateUrl: './awaiting-delivery.component.html',
-  styleUrls: ['./awaiting-delivery.component.css']
+  styleUrls: ['./awaiting-delivery.component.css'],
+  animations: [
+    trigger('slideAnim', [
+      transition(':leave', [
+        style({ transform: 'scale(1.1)' }),
+        animate(1000),
+        useAnimation(bounceOutLeftAnimation)
+      ])
+    ])
+  ]
 })
 export class AwaitingDeliveryComponent implements OnInit, OnChanges {
 

@@ -1,21 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 // import { Validators } from '@angular/forms';
 // import { InputValidators } from '../../validators/input.validators';
-
 // helper data to render all needed values in select options
 import { Brands } from "../../utilities/brands";
 import { AppliancesType } from '../../utilities/appliances-type'
-
 // service for storing new model
 import { ModelService } from '../../services/model.service';
 // interfaces
 import { NewModel } from 'src/app/interfaces/new-model-create';
+// animations
+import { fade } from 'src/app/utilities/animations';
+
 
 
 @Component({
   selector: 'app-add-new-model',
   templateUrl: './add-new-model.component.html',
-  styleUrls: ['./add-new-model.component.css']
+  styleUrls: ['./add-new-model.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class AddNewModelComponent implements OnInit {
 
@@ -47,17 +51,21 @@ export class AddNewModelComponent implements OnInit {
         this.modelService.storeModelToLS(newModel);
         this.addedModelAlreadyExists = this.modelService.isModelAdded();
         if (!this.addedModelAlreadyExists) {
-          this.latestAddedModel = `${newModel.brand} ${newModel.model} added to the data base.`
+          this.latestAddedModel = `${newModel.brand} ${newModel.model} added to the data base.`;
+          setTimeout(() => {
+            this.latestAddedModel = '';
+          }, 4000);
         } else {
           this.latestAddedModel = `Model ${newModel.model} already exists in database!`
         }
+
         // for info msg about added model to data base
 
       }
     }
 
     form.reset();
-    console.log(this.addedModelAlreadyExists)
+
   }
 
 }

@@ -1,7 +1,7 @@
 <div class="container">
 
-    <div *ngIf="latestAddedModel">
-        <p *ngIf="!addedModelAlreadyExists" class="addedModelInfo">
+    <div *ngIf="latestAddedModel" @fade>
+        <p *ngIf="!addedModelAlreadyExists" class="addedModelInfo" @fade>
             <span>{{latestAddedModel}}</span>
         </p>
         <p *ngIf="addedModelAlreadyExists" class="modelAlreadyExists">

@@ -4,7 +4,7 @@
 </div>
 
 <!-- (click)="forIntro()" -->
-<div class="intro" *ngIf="intro">
+<div class="intro" *ngIf="intro" @fadeInAnim>
     <h2>Informācija par datubāzi</h2>
     <ul>
         <li (click)="showStatusInfo(viewModels)" #viewModels>View models...</li><span

@@ -6,11 +6,22 @@ import { ModelService } from '../services/model.service';
 import { Brands } from '../utilities/brands';
 import { NewOrder } from '../interfaces/new-order-create';
 
+// animations
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
 
 @Component({
   selector: 'app-place-order',
   templateUrl: './place-order.component.html',
-  styleUrls: ['./place-order.component.css']
+  styleUrls: ['./place-order.component.css'],
+  animations: [
+    trigger('fade', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(1500)
+      ])
+    ])
+  ]
 })
 export class PlaceOrderComponent implements OnInit {
 

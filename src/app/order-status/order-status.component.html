@@ -4,18 +4,22 @@
     <a routerLink="all-orders" routerLinkActive="active-link" (click)="forIntro()">All orders</a>
 </div>
 <!-- (click)="toShowComponent()" -->
-<div class="intro" *ngIf="intro">
+
+
+<div class="intro" *ngIf="intro" @fadeInAnim>
     <h2>Informācija par statusiem</h2>
     <ul>
         <li (click)="showStatusInfo(awaiting)" #awaiting>Awaiting delivery...</li><span
-            *ngIf="statusInfo.awaiting">Tiek uzrādīti visi pasūtījumi, kas vēl nav saņemti. Ar pogu automātiski var
+            *ngIf="statusInfo.awaiting">Tiek uzrādīti visi pasūtījumi, kas vēl nav saņemti. Ar pogu
+            automātiski var
             nosūtīt uz izpildītajiem pasūtījumiem.</span>
 
         <li (click)="showStatusInfo(recieved)" #recieved>Items recieved...</li><span
             *ngIf="statusInfo.recieved">Tiek uzrādīti visi pasūtījumi, kas ir izpildīti.</span>
 
         <li (click)="showStatusInfo(allorders)" #allorders>All orders...</li><span
-            *ngIf="statusInfo.allorders">Tiek uzrādīti visi pasūtījumi gan saņemti, gan arī tie, kas vēl gaidāmi.</span>
+            *ngIf="statusInfo.allorders">Tiek uzrādīti visi pasūtījumi gan saņemti, gan arī tie, kas vēl
+            gaidāmi.</span>
     </ul>
 </div>
 <router-outlet></router-outlet>

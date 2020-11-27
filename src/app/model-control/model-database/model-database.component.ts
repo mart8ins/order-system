@@ -1,9 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-model-database',
   templateUrl: './model-database.component.html',
-  styleUrls: ['./model-database.component.css']
+  styleUrls: ['./model-database.component.css'],
+  animations: [
+    trigger('fadeInAnim', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class ModelDatabaseComponent implements OnInit {
 

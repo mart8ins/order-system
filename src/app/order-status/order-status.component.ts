@@ -1,9 +1,19 @@
+
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-order-status',
   templateUrl: './order-status.component.html',
-  styleUrls: ['./order-status.component.css']
+  styleUrls: ['./order-status.component.css'],
+  animations: [
+    trigger('fadeInAnim', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ])
+    ])
+  ]
 })
 export class OrderStatusComponent implements OnInit {
 
@@ -37,9 +47,5 @@ export class OrderStatusComponent implements OnInit {
         break;
 
     }
-
-
-
-    // this.statusInfo ? this.statusInfo = false : this.statusInfo = true;
   }
 }
